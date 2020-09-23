@@ -1,0 +1,72 @@
+#Python 函数参数传递
+
+## 动态参数
+1. *args
+  + 接收任意长度的参数
+  
+'''
+def func(*args):
+    for arg in args:
+        print(arg)
+
+func(1,2,3,4)
+'''
+  + 传入包装好的参数列表时，需要传入*list
+  
+'''
+def func(*args):
+    for arg in args:
+        print(arg)
+
+arg_list = [1,2,3,4]
+#func(arg_list)  传递参数arg_list会作为一个整体的参数传入,该参数为List类型
+func(*arg_list)  arg_list中每一项被分别传入func中
+'''
+
+2. **kwargs
+  + 接收任意长度的键值对参数
+  
+'''
+def func(**kwargs):
+    for kwarg in kwargs:
+        print(kwarg, kwargs[kwarg])
+
+func(a=1, b=2, c=3)
+'''
+
+  + 传入包装好的键值对字典时，需要传入**dict
+  
+'''
+
+def func(**kwargs):
+    for kwarg in kwargs:
+        print(kwarg, kwargs[kwarg])
+dict = {
+  'a' = 1,
+  'b' = 2,
+  'c' = 3
+}
+#func(dict)  参数数量错误
+#func(*dict) 参数数量错误
+func(**dict)
+'''
+
+
+3. 组合参数
+  + 参数顺序为：位置参数、*args、默认参数、**kwargs
+  
+'''
+def func(a , b, c=1, *args, **kwargs):
+    for kwarg in kwargs:
+        print(kwarg, kwargs[kwarg])
+        
+arg_list = [3,4,5,6]
+dict = {
+  'k1' = 1,
+  'k2' = 2,
+  'k3' = 3
+}
+#func(1, 2, *list, **dict)     c被赋值为list第一项
+func(1, 2, *list, **dict)
+'''
+
